@@ -1,0 +1,10 @@
+django==4.0.4
+djangorestframework
+pyyaml
+requests
+django-cors-headers
+distlib==0.3.4
+filelock==3.7.0
+platformdirs==2.5.2
+six==1.16.0
+virtualenv==20.14.1
