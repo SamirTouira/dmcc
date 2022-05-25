@@ -10,7 +10,7 @@ function Home() {
     const navigate = useNavigate();
     useEffect(() => {
         navigate('/');
-        const dummy = () => {
+        const userRender = () => {
         if (token) {
             fetch("http://localhost:8000/api/v1/user/me", {
                 credentials: "include",
@@ -28,7 +28,7 @@ function Home() {
                 .catch(error => console.log(error));
         }
     }
-    dummy();
+    userRender();
     }, [])
 
 

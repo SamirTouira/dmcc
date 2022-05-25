@@ -7,22 +7,22 @@ function Login() {
     const [cookie, setCookie] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
-        if (localStorage.getItem('user-token')) {
+        if (localStorage.getItem('user-info')) {
             navigate("/")
         }
     }, [])
 
     function login() {
-        if (email == null || email == "") {
+        if (email === null || email === "") {
             alert("Please fill your email and password");
             return false;
         }
-        if (password == null || password == "") {
+        if (password === null || password === "") {
             alert("Please fill your email and password");
             return false;
         }
         let item = { email, password, cookie };
-        fetch("http://127.0.0.1:8000/api/v1/user/login", {
+        fetch("http://localhost:8000/api/v1/user/login", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -31,9 +31,10 @@ function Login() {
             body: JSON.stringify(item)
 
         }).then(res => res.json()).then(data => {
-            if (data.message == "User logged in.") {
+            if (data.message === "User logged in.") {
                 document.cookie = `sessionid=${data.token}`;
-                navigate("/")
+                window.location.reload(false);
+                navigate("/");
             } else {
                 alert(data.message)
             }

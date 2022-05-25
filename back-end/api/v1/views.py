@@ -80,11 +80,10 @@ def delete_user(request, user_id):
 def update_user(request):
     if request.method == 'PUT':
         data = loads(request.body)
-        if data['email'] and data['password']:
+        if data['email']:
             if request.user.is_authenticated:
                 user = request.user
                 user.email = data['email']
-                user.set_password(data['password'])
                 user.save()
                 return JsonResponse({'message': 'User updated.'})
             else:

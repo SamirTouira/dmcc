@@ -7,22 +7,22 @@ function Register() {
     const [cookie, setCookie] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
-        if (localStorage.getItem('user-token')) {
+        if (localStorage.getItem('user-info')) {
             navigate("/")
         }
     }, [])
 
     function register() {
-        if (email == null || email == "") {
+        if (email === null || email === "") {
             alert("Please fill an email and password");
             return false;
         }
-        if (password == null || password == "") {
+        if (password === null || password === "") {
             alert("Please fill an email and password");
             return false;
         }
         let item = { email, password, cookie };
-        fetch("http://127.0.0.1:8000/api/v1/user/create", {
+        fetch("http://localhost:8000/api/v1/user/create", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,8 @@ function Register() {
             body: JSON.stringify(item)
 
         }).then(res => res.json()).then(data => {
-            if (data.message == "User created successfully.") {
+            if (data.message === "User created successfully.") {
+                alert(data.message)
                 navigate("/")
             } 
         }).catch(err => {
@@ -42,7 +43,7 @@ function Register() {
     return (
         <div className="col-sm-6 offset-sm-3">
             <br />
-            <h1>Register with your DMCC account</h1>
+            <h1>Create your account</h1>
             <br />
             <div>
                 <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} className="form-control" />

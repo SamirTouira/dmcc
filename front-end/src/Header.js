@@ -13,7 +13,7 @@ function Header() {
                     <Nav variant="tabs" defaultActiveKey="/" className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <>
-                            {localStorage.getItem("user-token") ? (
+                            {localStorage.getItem("user-info") ? (
                                 <>
                                     <Nav.Link as={NavLink} eventKey={2} to="/profile"> Profile </Nav.Link>
                                     <Nav.Link onClick={() => {
